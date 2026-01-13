@@ -30,9 +30,16 @@ export default async function LaporanPendapatanPage() {
                     <h1 className="text-2xl font-bold text-slate-900">Laporan Pendapatan Jasa Medis</h1>
                     <p className="text-slate-500">Analisa pendapatan dari tindakan medis</p>
                 </div>
-                <div className="bg-green-600 text-white px-4 py-2 rounded-lg shadow-sm">
-                    <span className="text-xs opacity-80 block">Total Pendapatan Jasa</span>
-                    <span className="font-bold text-lg">Rp {totalRevenue.toLocaleString()}</span>
+                <div className="flex items-center gap-4">
+                    <div className="bg-green-600 text-white px-4 py-2 rounded-lg shadow-sm">
+                        <span className="text-xs opacity-80 block">Total Pendapatan Jasa</span>
+                        <span className="font-bold text-lg">Rp {totalRevenue.toLocaleString()}</span>
+                    </div>
+
+                    <div className="flex gap-2">
+                        <a href="/api/export/pendapatan" className="inline-flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Export Pendapatan</a>
+                        <a href="/api/export/pasien" className="inline-flex items-center gap-2 px-3 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-800">Export Pasien</a>
+                    </div>
                 </div>
             </div>
 
