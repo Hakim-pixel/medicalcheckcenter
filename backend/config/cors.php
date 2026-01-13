@@ -19,7 +19,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    // You can set CORS_ALLOWED_ORIGINS in your .env as a comma-separated list
+    // Example: CORS_ALLOWED_ORIGINS="https://medicalcheckcenter.vercel.app,https://abcd-1234.ngrok.io"
+    'allowed_origins' => env('CORS_ALLOWED_ORIGINS') ? array_map('trim', explode(',', env('CORS_ALLOWED_ORIGINS'))) : ['http://localhost:3000', 'http://127.0.0.1:3000'],
 
     'allowed_origins_patterns' => [],
 
@@ -29,6 +31,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => true,
+    'supports_credentials' => env('CORS_SUPPORTS_CREDENTIALS', false),
 
 ];

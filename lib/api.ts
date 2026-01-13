@@ -13,8 +13,25 @@ export async function fetchFromLaravel(endpoint: string, method: RequestMethod =
         'Accept': 'application/json',
     };
 
+    // If we have a Next session token for the logged-in user, use it.
     if (token) {
         headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    // Server-only service token (do NOT prefix with NEXT_PUBLIC_). This lets
+    // server-side fetches authenticate via a secret stored in Vercel (or local
+    // env) without exposing the token to the browser. Only attach when running
+    // on the server to avoid leaking the secret.
+    try {
+        const isServer = typeof window === 'undefined';
+        if (isServer) {
+            // Access env var only on server side. Use API_SERVICE_TOKEN in Vercel
+            // environment (do NOT add NEXT_PUBLIC_ prefix).
+            const serviceToken = process.env.API_SERVICE_TOKEN;
+            if (serviceToken) headers['Authorization'] = `Bearer ${serviceToken}`;
+        }
+    } catch (e) {
+        // ignore in client build
     }
 
     try {
