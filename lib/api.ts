@@ -2,6 +2,19 @@ import { getSession } from "@/lib/auth";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
+// Normalize API base so callers can append `/login`, `/kunjungan` etc.
+const API_BASE = (() => {
+    try {
+        const raw = API_URL || "";
+        // remove trailing slashes
+        const trimmed = raw.replace(/\/+$/, "");
+        // ensure it ends with /api
+        return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+    } catch (e) {
+        return API_URL;
+    }
+})();
+
 type RequestMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 export async function fetchFromLaravel(endpoint: string, method: RequestMethod = "GET", body?: any) {
@@ -35,7 +48,7 @@ export async function fetchFromLaravel(endpoint: string, method: RequestMethod =
     }
 
     try {
-        const res = await fetch(`${API_URL}${endpoint}`, {
+    const res = await fetch(`${API_BASE}${endpoint}`, {
             method,
             headers,
             body: body ? JSON.stringify(body) : undefined,
