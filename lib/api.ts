@@ -35,8 +35,9 @@ export async function fetchFromLaravel(endpoint: string, method: RequestMethod =
     // server-side fetches authenticate via a secret stored in Vercel (or local
     // env) without exposing the token to the browser. Only attach when running
     // on the server to avoid leaking the secret.
+    let isServer = false;
     try {
-        const isServer = typeof window === 'undefined';
+        isServer = typeof window === 'undefined';
         if (isServer) {
             // Access env var only on server side. Use API_SERVICE_TOKEN in Vercel
             // environment (do NOT add NEXT_PUBLIC_ prefix).
@@ -45,6 +46,18 @@ export async function fetchFromLaravel(endpoint: string, method: RequestMethod =
         }
     } catch (e) {
         // ignore in client build
+    }
+
+    // Debug: log server-side outgoing requests so deployed functions show the
+    // attempted target (avoid printing secret tokens).
+    try {
+        if (isServer) {
+            const hasServiceToken = !!process.env.API_SERVICE_TOKEN;
+            // eslint-disable-next-line no-console
+            console.log(`[fetchFromLaravel] ${method} ${API_BASE}${endpoint} | hasServiceToken=${hasServiceToken}`);
+        }
+    } catch (e) {
+        // ignore logging errors
     }
 
     try {

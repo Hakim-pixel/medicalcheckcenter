@@ -13,6 +13,16 @@ export async function POST(request: Request) {
             password: body.password
         });
 
+        // Server-side debug logging: record which NEXT_PUBLIC_API_URL was set
+        // (do not print tokens). This log will appear in Vercel function logs
+        // and helps diagnose if the deployed app still points to the wrong URL.
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[api/auth/login] NEXT_PUBLIC_API_URL=', process.env.NEXT_PUBLIC_API_URL, 'loginResultHasToken=', !!data?.access_token);
+        } catch (e) {
+            // ignore
+        }
+
         if (!data || !data.access_token) {
             return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
         }
