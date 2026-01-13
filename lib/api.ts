@@ -73,27 +73,12 @@ export async function fetchFromLaravel(endpoint: string, method: RequestMethod =
 }
 
 export async function loginToLaravel(credentials: any) {
+    // Use the normalized API base so we always call the Laravel API under `/api`.
+    // Reuse fetchFromLaravel so server-only service tokens and error handling
+    // are applied consistently.
     try {
-        const res = await fetch(`${API_URL}/login`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify(credentials),
-            cache: 'no-store'
-        });
-
-        if (!res.ok) return null;
-
-        // Read as text first to guard against non-JSON warnings/errors injected by PHP
-        const text = await res.text();
-        try {
-            return JSON.parse(text);
-        } catch (e) {
-            console.error('loginToLaravel: response not JSON:', text);
-            return null;
-        }
+        const result = await fetchFromLaravel('/login', 'POST', credentials);
+        return result;
     } catch (e) {
         return null;
     }
