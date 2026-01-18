@@ -57,11 +57,11 @@ export default function LoginPage() {
                         <Stethoscope size={48} className="text-blue-100" />
                     </div>
                     <h1 className="text-5xl font-bold mb-6 leading-tight">
-                        Sistem Rekam <br />
-                        <span className="text-blue-200">Medis Digital</span>
+                        Integrasi <br />
+                        <span className="text-blue-200">Layanan Kesehatan</span>
                     </h1>
                     <p className="text-xl text-blue-100/80 mb-8 leading-relaxed">
-                        Platform terintegrasi untuk manajemen pelayanan kesehatan yang efisien, akurat, dan aman.
+                        Platform terintegrasi untuk Klinik Lopang. Kelola data pasien, rekam medis, dan operasional dalam satu dashboard yang efisien (petugas only).
                     </p>
 
                     <div className="grid grid-cols-2 gap-6">
@@ -81,7 +81,7 @@ export default function LoginPage() {
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white/50 backdrop-blur-3xl">
                 <div className="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
                     <div className="text-center mb-10">
-                        <h2 className="text-2xl font-bold text-slate-800 mb-2">Selamat Datang Kembali</h2>
+                        <h2 className="text-2xl font-bold text-slate-800 mb-2">Selamat Datang Karyawan</h2>
                         <p className="text-slate-500">Silahkan login untuk mengakses sistem</p>
                     </div>
 
@@ -145,7 +145,7 @@ export default function LoginPage() {
 
                     <div className="mt-8 text-center">
                         <p className="text-xs text-slate-400">
-                            © 2025 Sistem Rekam Medis. Dilindungi Undang-undang.
+                            © 2025 Integrasi Layanan Kesehatan. Dilindungi Hakim.
                         </p>
                     </div>
                 </div>
