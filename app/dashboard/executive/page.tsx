@@ -1,5 +1,6 @@
 import { TrendingUp, Users, DollarSign, Activity } from "lucide-react";
 import { fetchFromLaravel } from "@/lib/api";
+import ExportButton from "../laporan/ExportButton";
 
 export default async function ExecutiveDashboard() {
     // 1. Stats Cards Data
@@ -24,11 +25,11 @@ export default async function ExecutiveDashboard() {
     const obatMap: Record<string, any> = {}
     obats.forEach((o: any) => { obatMap[o.id] = o })
 
-    const revenueObat = resep.reduce((acc: number, curr: any) => acc + ((curr.jumlah || 0) * ((obatMap[curr.obatId]?.harga) || 0)), 0)
+    const revenueObat = resep.reduce((acc: number, curr: any) => acc + (Number(curr.jumlah || 0) * Number(obatMap[curr.obatId]?.harga || 0)), 0)
 
     const tpRes = await fetchFromLaravel('/tindakan-pasien')
     const tp = Array.isArray(tpRes) ? tpRes : []
-    const revenueTindakan = tp.reduce((acc: number, curr: any) => acc + (curr.biaya || 0), 0)
+    const revenueTindakan = tp.reduce((acc: number, curr: any) => acc + Number(curr.biaya || 0), 0)
 
     const totalRevenue = revenueObat + revenueTindakan
 
@@ -120,10 +121,13 @@ export default async function ExecutiveDashboard() {
 
                 <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-2xl text-white flex flex-col justify-center items-center text-center">
                     <h3 className="text-xl font-bold mb-2">Laporan Bulanan</h3>
-                    <p className="text-slate-400 mb-6 max-w-sm">Unduh laporan lengkap aktivitas rumah sakit dalam format PDF atau Excel.</p>
-                    <button className="px-6 py-3 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-200 transition">
+                    <p className="text-slate-400 mb-6 max-w-sm">Unduh laporan aktivitas Klinik dalam format PDF atau Excel.</p>
+                    <ExportButton
+                        data={kunjungans}
+                        className="px-6 py-3 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-200 transition"
+                    >
                         Download Report
-                    </button>
+                    </ExportButton>
                 </div>
             </div>
         </div>

@@ -38,7 +38,17 @@ class ObatController extends Controller
 
     public function destroy($id)
     {
-        DB::table('obats')->where('id', $id)->delete();
-        return response()->json(['message' => 'Obat deleted']);
+        try {
+            $deleted = DB::table('obats')->where('id', $id)->delete();
+            if ($deleted === 0) {
+                return response()->json(['message' => 'Obat not found'], 404);
+            }
+            return response()->json(['message' => 'Obat deleted']);
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() === '23000') { // Integrity constraint violation
+                return response()->json(['message' => 'Data Obat ini sedang digunakan dalam resep dan tidak bisa dihapus.'], 409);
+            }
+            return response()->json(['message' => 'Terjadi kesalahan server'], 500);
+        }
     }
 }

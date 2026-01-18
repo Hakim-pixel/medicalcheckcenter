@@ -32,4 +32,9 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(Dokter::class, 'dokterId');
     }
+
+    public function rekamMedis()
+    {
+        return $this->hasOne(RekamMedis::class, 'kunjunganId');
+    }
 }

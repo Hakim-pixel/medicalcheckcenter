@@ -30,10 +30,10 @@ export default function Home() {
       <main className="flex-1 pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2 space-y-8 animate-fade-in-up">
+            <div className="lg:w-1/2 space-y-8">
               <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tight">
                 Integrasi <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                <span className="text-blue-600">
                   Rekam Medis
                 </span>
               </h1>
@@ -45,7 +45,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link
                   href="/login"
-                  className="px-8 py-4 rounded-xl bg-blue-600 text-white font-bold text-lg hover:bg-blue-700 hover:scale-105 transition-all shadow-lg shadow-blue-500/30 text-center"
+                  className="px-8 py-4 rounded-xl bg-blue-600 text-white font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 text-center"
                 >
                   Login Sekarang
                 </Link>
@@ -53,38 +53,12 @@ export default function Home() {
             </div>
 
             <div className="lg:w-1/2 relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-20 blur-3xl rounded-full"></div>
-              <div className="relative bg-white rounded-2xl shadow-2xl border border-slate-200 p-2 transform rotate-2 hover:rotate-0 transition-all duration-500">
+              <div className="relative bg-white rounded-2xl shadow-xl border border-slate-200 p-2">
                 <img
                   src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=2600&q=80"
                   alt="Dashboard Preview"
                   className="rounded-xl w-full"
                 />
-
-                {/* Floating Cards */}
-                <div className="absolute -left-8 top-20 bg-white p-4 rounded-xl shadow-xl border border-slate-100 animate-bounce-slow">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-green-100 rounded-lg text-green-600">
-                      <Shield size={20} />
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-500">Data Security</div>
-                      <div className="font-bold text-slate-900">Encrypted</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute -right-8 bottom-20 bg-white p-4 rounded-xl shadow-xl border border-slate-100 animate-bounce-slow delay-75">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-indigo-100 rounded-lg text-indigo-600">
-                      <Clock size={20} />
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-500">Uptime</div>
-                      <div className="font-bold text-slate-900">99.9%</div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
-import { Download, FileText, Printer } from "lucide-react";
+import { Printer } from "lucide-react";
 import Link from 'next/link';
 import { fetchFromLaravel } from "@/lib/api";
+import ExportButton from "./ExportButton";
 
 export default async function LaporanPage() {
     const res = await fetchFromLaravel('/kunjungan')
@@ -26,10 +27,7 @@ export default async function LaporanPage() {
                     <h1 className="text-2xl font-bold text-slate-900">Laporan & Arsip</h1>
                     <p className="text-slate-500">Rekapitulasi kunjungan dan pendapatan</p>
                 </div>
-                <button className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800">
-                    <Download size={16} />
-                    Export CSV
-                </button>
+                <ExportButton data={visits} />
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">

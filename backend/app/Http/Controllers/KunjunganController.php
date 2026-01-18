@@ -11,7 +11,12 @@ class KunjunganController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Kunjungan::with(['pasien', 'dokter.poliklinik']);
+        $query = Kunjungan::with([
+            'pasien',
+            'dokter.poliklinik',
+            'rekamMedis.resep.obat',
+            'rekamMedis.tindakan'
+        ]);
 
         if ($request->has('date')) {
             $query->whereDate('tgl_kunjungan', $request->date);
@@ -51,7 +56,7 @@ class KunjunganController extends Controller
     public function show($id)
     {
         $kunjungan = Kunjungan::with(['pasien', 'dokter.poliklinik'])->where('id', $id)->first();
-        if (! $kunjungan) {
+        if (!$kunjungan) {
             return response()->json(['message' => 'Not found'], 404);
         }
 

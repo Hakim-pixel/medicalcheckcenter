@@ -34,10 +34,14 @@ class JadwalController extends Controller
     public function destroy($id)
     {
         $jadwal = JadwalDokter::find($id);
-        if (! $jadwal) {
+        if (!$jadwal) {
             return response()->json(['message' => 'Not found'], 404);
         }
-        $jadwal->delete();
-        return response()->json(null, 204);
+        try {
+            $jadwal->delete();
+            return response()->json(null, 204);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['message' => 'Tidak bisa menghapus jadwal karena masih ada antrian terkait.'], 409);
+        }
     }
 }

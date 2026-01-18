@@ -39,9 +39,18 @@ class DokterController extends Controller
     public function destroy($id)
     {
         $dokter = Dokter::find($id);
-        if ($dokter) {
-            $dokter->delete();
+        if (!$dokter) {
+            return response()->json(['message' => 'Dokter not found'], 404);
         }
-        return response()->json(['message' => 'Dokter deleted']);
+
+        try {
+            $dokter->delete();
+            return response()->json(['message' => 'Dokter deleted']);
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return response()->json(['message' => 'Dokter ini memiliki jadwal atau riwayat kunjungan dan tidak bisa dihapus.'], 409);
+            }
+            return response()->json(['message' => 'Terjadi kesalahan server'], 500);
+        }
     }
 }
