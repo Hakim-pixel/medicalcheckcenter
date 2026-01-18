@@ -32,14 +32,14 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 space-y-8 animate-fade-in-up">
               <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tight">
-                Masa Depan <br />
-                /*<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                Integrasi <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   Rekam Medis
                 </span>
               </h1>
 
               <p className="text-xl text-slate-500 max-w-lg leading-relaxed">
-                Platform terintegrasi untuk rumah sakit modern. Kelola data pasien, rekam medis, dan operasional dalam satu dashboard yang efisien.
+                Platform terintegrasi untuk Klinik Lopang. Kelola data pasien, rekam medis, dan operasional dalam satu dashboard yang efisien.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
