@@ -66,7 +66,7 @@ export default function DashboardClientLayout({
                     >
                         <Menu size={24} />
                     </button>
-                    <span className="ml-3 font-semibold text-slate-900">MedRecordSys</span>
+                    <span className="ml-3 font-semibold text-slate-900">Klinik Lopang</span>
                 </div>
 
                 <main className="flex-1 overflow-y-auto p-4 md:p-8">
