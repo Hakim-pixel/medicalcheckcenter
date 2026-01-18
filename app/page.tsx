@@ -39,7 +39,7 @@ export default function Home() {
               </h1>
 
               <p className="text-xl text-slate-500 max-w-lg leading-relaxed">
-                Platform terintegrasi untuk Klinik Lopang. Kelola data pasien, rekam medis, dan operasional dalam satu dashboard yang efisien.
+                Platform terintegrasi untuk Klinik Lopang. Kelola data pasien, rekam medis, dan operasional dalam satu dashboard yang efisien (petugas only).
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -47,11 +47,8 @@ export default function Home() {
                   href="/login"
                   className="px-8 py-4 rounded-xl bg-blue-600 text-white font-bold text-lg hover:bg-blue-700 hover:scale-105 transition-all shadow-lg shadow-blue-500/30 text-center"
                 >
-                  Mulai Sekarang
+                  Login Sekarang
                 </Link>
-                <button className="px-8 py-4 rounded-xl bg-white text-slate-700 font-bold text-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all text-center">
-                  Pelajari Lebih Lanjut
-                </button>
               </div>
             </div>
 
